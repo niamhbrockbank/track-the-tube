@@ -20,6 +20,6 @@ export const columns: ColumnDef<Station>[] = [
             return <div className="text-right font-medium">{`${note.slice(0,9)}...`}</div>
         }
 
-        return note
+        return <div className="text-right font-medium">{note}</div>
     }}
 ]
