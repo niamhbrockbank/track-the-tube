@@ -9,6 +9,17 @@ import {Station } from "@/types/globals.types"
  */
 export const columns: ColumnDef<Station>[] = [
     {accessorKey : "name", header : "Station"},
-    {accessorKey: 'status', header:"Status"}, 
-    {accessorKey : "notes", header : "Notes"}
+    {accessorKey: 'status', header:() => <div className="text-center">Status</div>, 
+    cell: ({row}) =>  <div className="text-center font-medium">{row.getValue('status')}</div>}
+    , 
+    {accessorKey : "notes", header : "Notes", cell: ({row}) => {
+        const note : string = row.getValue("notes")
+        if (!note) return
+
+        if (note.length > 10){
+            return <div className="text-right font-medium">{`${note.slice(0,9)}...`}</div>
+        }
+
+        return note
+    }}
 ]
