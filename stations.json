@@ -1,0 +1,12 @@
+[{
+   "id" : "one",
+   "name" : "Canada Water",
+   "lines" : ["Overground - East London"],
+   "status" : "none"
+}, 
+{
+    "id" : "two",
+    "name" : "Oxford Circus",
+    "lines" : ["Victoria", "Central Line", "Bakerloo"],
+    "status" : "none"
+}]

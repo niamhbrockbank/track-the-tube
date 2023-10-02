@@ -14,4 +14,4 @@ type StationInteraction = {
     purposeOfVisit : string,
 }
 
-type Station = BasicStation & StationInteraction
+export type Station = BasicStation & StationInteraction
