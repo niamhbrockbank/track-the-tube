@@ -14,21 +14,40 @@
 
 import axios from "axios";
 import dotenv from "dotenv";
+import fs from "fs";
 
 dotenv.config();
 const app_id = process.env.APP_ID;
 const app_key = process.env.APP_KEY;
 
-const fetchData = async (mode) => {
-  let result = await axios.get(
-    `https://api.tfl.gov.uk/StopPoint/Mode/${mode}?app_id=${app_id}&app_key=${app_key}`
-  );
+const fetchData = async (mode: any) => {
+  let result = await axios.get(`https://api.tfl.gov.uk/StopPoint/Mode/${mode}`);
+  //end of url ?app_id=${app_id}&app_key=${app_key}
   const stopPoints = result.data.stopPoints;
   const stopType =
     mode === "overground" ? "NaptanRailStation" : "NaptanMetroStation";
-  const stations = stopPoints.filter((sp) => sp.stopType === stopType);
+  const rawStations = stopPoints.filter((sp: any) => sp.stopType === stopType);
+
   // map through the stations and grab the stuff you want from each and then return it
   // unless you really want the whole thing, which you probably don't, it's enormous
+  const stations = rawStations.map((rs: any) => {
+    return {
+      lines: rs.lines,
+      id: rs.id,
+      commonName: rs.commonName,
+    };
+  });
+
+  //   console.log(stations);
+  fs.writeFile(
+    `./${mode}StationsFromAPI.json`,
+    JSON.stringify(stations),
+    "utf8",
+    (err: any) => {
+      if (err) throw err;
+      console.log("file saved");
+    }
+  );
 };
 
 const getStations = async () => {
