@@ -11,8 +11,10 @@
   "dependencies": {
     "@radix-ui/react-slot": "^1.0.2",
     "@tanstack/react-table": "^8.10.3",
+    "axios": "^1.5.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
+    "dotenv": "^16.3.1",
     "lucide-react": "^0.279.0",
     "next": "latest",
     "react": "latest",
