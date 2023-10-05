@@ -1,8 +1,8 @@
 import { Client } from 'pg';
 
 const db = new Client({
-  user: process.env.DB_USER,
-  port: process.env.DB_PORT ? parseInt(process.env.DB_PORT) : 5432,
+  connectionString: process.env.DB_URL,
+  ssl: false,
 });
 
 async function connectDatabase() {
