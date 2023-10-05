@@ -5,6 +5,7 @@ export async function GET() {
   try {
     await connectDatabase()
     const { rows } = await db.query('SELECT * FROM lines');
+    await db.end()
     return NextResponse.json({lines: rows}, {status : 200})
   } catch (error) {
     console.error('Error executing query:', error);
@@ -16,6 +17,7 @@ export async function POST(req : NextRequest){
   try {
     await connectDatabase()
     const {rows} = await db.query(`INSERT INTO lines VALUES ($1, $2, $3) RETURNING *`, ['sfr38', 'central', 'red'])
+    await db.end()
     return NextResponse.json({lines: rows}, {status : 200})
   } catch (error) {
     console.error('Error executing query:', error);

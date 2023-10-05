@@ -1,20 +1,29 @@
+"use client"
+
 import { columns } from "./columns";
 import { Station } from "@/types/globals.types";
 import { DataTable } from "./data-table";
-import stations from "@/stations.json";
-// import fs from "fs";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
-async function getData(): Promise<Station[]> {
-  const data: Station[] = stations;
-  return data;
-}
+export default function Stations() {
+  const [stations, setStations] = useState<Station[]>([])
 
-export default async function DemoPage() {
-  const data = await getData();
+  useEffect(() => {
+    async function getStations(){
+      const response : any = await axios.get('http://localhost:3000/api/stations')
+      const rawStations = response.stations.map((s : {id : string, commonName : string} ) => {return {...s, status: 'none', lines: [''] }})
+      console.log(rawStations)
+      setStations(rawStations)
+    }
+
+    getStations()
+  }, [])
+
 
   return (
     <div className="container mx-auto py-10">
-      <DataTable columns={columns} data={data} />
+      <DataTable columns={columns} data={stations} />
     </div>
   );
 }
