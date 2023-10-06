@@ -28,7 +28,7 @@ export async function GET(req: NextRequest) {
         } = r;
         return {
           id: station_id,
-          name,
+          name: name.replace("Rail Station", ""),
           status,
           rating,
           dateOfFirstVisit: date_of_vist,
