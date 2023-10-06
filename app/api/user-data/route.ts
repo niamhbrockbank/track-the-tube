@@ -1,5 +1,4 @@
 import { connectDatabase, db } from "@/lib/db/db";
-import { Station } from "@/types/globals.types";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
@@ -38,7 +37,7 @@ export async function GET(req: NextRequest) {
       }),
     };
 
-    return NextResponse.json({ userData }, { status: 200 });
+    return NextResponse.json(userData, { status: 200 });
   } catch (error) {
     console.error("Error executing query:", error);
     return NextResponse.json(
