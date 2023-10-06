@@ -22,10 +22,14 @@ CREATE TABLE stations_on_lines (
 
 CREATE TYPE status AS ENUM ('visited', 'passed through', 'changed', 'none');
 
+CREATE TABLE users (
+  user_id SERIAL PRIMARY KEY,
+  user_name VARCHAR(255)
+);
+
 CREATE TABLE user_data (
-    user_id SERIAL PRIMARY KEY,
+    user_id INT REFERENCES users(user_id),
     station_id VARCHAR(255) REFERENCES stations(station_id),
-    user_name VARCHAR(255),
     status status,
     rating INT,
     date_of_visit TIMESTAMP,
