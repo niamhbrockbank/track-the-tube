@@ -1,4 +1,4 @@
-import { connectDatabase, db } from "@/lib/db/db";
+import { db } from "@/lib/db/db";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
@@ -6,7 +6,6 @@ export async function GET(req: NextRequest) {
   const user_id = searchParams.get("id");
 
   try {
-    await connectDatabase();
     const { rows } = await db.query(
       `SELECT * FROM user_data
       JOIN stations ON user_data.station_id = stations.station_id
