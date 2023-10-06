@@ -13,9 +13,12 @@ export const columns: ColumnDef<Station>[] = [
   {
     accessorKey: "status",
     header: () => <div className="text-left">Status</div>,
-    cell: ({ row }) => (
-      <Badge variant="outline">{row.getValue("status")}</Badge>
-    ),
+    cell: ({ row }) => {
+      const status: "visited" | "passed through" | "changed" | "none" =
+        row.getValue("status") || "none";
+      const variant = status === "passed through" ? "passedThrough" : status;
+      return <Badge variant={variant}>{row.getValue("status")}</Badge>;
+    },
   },
   {
     accessorKey: "notes",
