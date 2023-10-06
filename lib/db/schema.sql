@@ -30,7 +30,7 @@ CREATE TABLE users (
 CREATE TABLE user_data (
     user_id INT REFERENCES users(user_id),
     station_id VARCHAR(255) REFERENCES stations(station_id),
-    status status,
+    status status DEFAULT 'none',
     rating INT,
     date_of_visit TIMESTAMP,
     purpose_of_visit VARCHAR(255),
