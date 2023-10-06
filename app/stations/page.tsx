@@ -12,7 +12,7 @@ export default function Stations() {
 
   useEffect(() => {
     const getStations = async () => {
-      const response = await fetch("http://localhost:3000/api/stations");
+      const response = await fetch("http://localhost:3000/api/user-data?id=1");
       const jsonBody: { stations: Station[] } = await response.json();
       setStations(jsonBody.stations);
     };
