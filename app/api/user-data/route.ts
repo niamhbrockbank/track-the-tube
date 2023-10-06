@@ -1,5 +1,6 @@
 import { db } from "@/lib/db/db";
 import { NextRequest, NextResponse } from "next/server";
+import { json } from "stream/consumers";
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
@@ -38,6 +39,38 @@ export async function GET(req: NextRequest) {
     };
 
     return NextResponse.json(userData, { status: 200 });
+  } catch (error) {
+    console.error("Error executing query:", error);
+    return NextResponse.json(
+      { error: "Internal Server Error" },
+      { status: 500 }
+    );
+  }
+}
+
+export async function POST(req: NextRequest) {
+  const jsonBody = await req.json();
+  const { user_id, user_name } = jsonBody;
+
+  try {
+    // Insert new user into db
+    const { rows } = await db.query(
+      `INSERT INTO users VALUES ($1, $2) RETURNING *`,
+      [user_id, user_name]
+    );
+
+    // Get all stations from db
+    const response = await db.query(`SELECT DISTINCT station_id FROM stations`);
+    const stations = response.rows;
+
+    stations.map((s: { station_id: string }) => {
+      db.query(`INSERT INTO user_data VALUES ($1, $2)`, [
+        user_id,
+        s.station_id,
+      ]);
+    });
+
+    return NextResponse.json({ user: rows[0] }, { status: 200 });
   } catch (error) {
     console.error("Error executing query:", error);
     return NextResponse.json(
