@@ -4,26 +4,25 @@ import { columns } from "./columns";
 import { Station } from "@/types/globals.types";
 import { DataTable } from "./data-table";
 import { useEffect, useState } from "react";
-import axios from "axios";
+
+// TODO : use getStaticProps
 
 export default function Stations() {
-  const [stations, setStations] = useState<Station[]>([])
+  const [data, setData] = useState<Station[]>([{id: 'easy', name : 'not est', status : 'none', lines : ['victoria']}])
+  const [isLoading, setLoading] = useState(true)
 
   useEffect(() => {
-    async function getStations(){
-      const response : any = await axios.get('http://localhost:3000/api/stations')
-      const rawStations = response.stations.map((s : {id : string, commonName : string} ) => {return {...s, status: 'none', lines: [''] }})
-      console.log(rawStations)
-      setStations(rawStations)
-    }
-
-    getStations()
+    fetch('/api/stations')
+      .then((res) => res.json())
+      .then((data) => {
+        setData(data.stations.map((d : {id : string, name : string}) => {return {...d, status : 'none', lines : ['victoria']}}))
+        setLoading(false)
+      })
   }, [])
-
 
   return (
     <div className="container mx-auto py-10">
-      <DataTable columns={columns} data={stations} />
+      <DataTable columns={columns} data={data} />
     </div>
   );
 }
