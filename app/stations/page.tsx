@@ -1,20 +1,28 @@
+"use client";
+
 import { columns } from "./columns";
 import { Station } from "@/types/globals.types";
 import { DataTable } from "./data-table";
-import stations from "@/stations.json";
-// import fs from "fs";
+import { useEffect, useState } from "react";
 
-async function getData(): Promise<Station[]> {
-  const data: Station[] = stations;
-  return data;
-}
+// TODO : use getStaticProps
 
-export default async function DemoPage() {
-  const data = await getData();
+export default function Stations() {
+  const [stations, setStations] = useState<Station[]>([]);
+
+  useEffect(() => {
+    const getStations = async () => {
+      const response = await fetch("http://localhost:3000/api/user-data?id=1");
+      const jsonBody: { stations: Station[] } = await response.json();
+      setStations(jsonBody.stations);
+    };
+
+    getStations();
+  }, []);
 
   return (
     <div className="container mx-auto py-10">
-      <DataTable columns={columns} data={data} />
+      <DataTable columns={columns} data={stations} />
     </div>
   );
 }
