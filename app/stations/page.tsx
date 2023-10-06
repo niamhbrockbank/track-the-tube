@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { columns } from "./columns";
 import { Station } from "@/types/globals.types";
@@ -8,21 +8,21 @@ import { useEffect, useState } from "react";
 // TODO : use getStaticProps
 
 export default function Stations() {
-  const [data, setData] = useState<Station[]>([{id: 'easy', name : 'not est', status : 'none', lines : ['victoria']}])
-  const [isLoading, setLoading] = useState(true)
+  const [stations, setStations] = useState<Station[]>([]);
 
   useEffect(() => {
-    fetch('/api/stations')
-      .then((res) => res.json())
-      .then((data) => {
-        setData(data.stations.map((d : {id : string, name : string}) => {return {...d, status : 'none', lines : ['victoria']}}))
-        setLoading(false)
-      })
-  }, [])
+    const getStations = async () => {
+      const response = await fetch("http://localhost:3000/api/stations");
+      const jsonBody: { stations: Station[] } = await response.json();
+      setStations(jsonBody.stations);
+    };
+
+    getStations();
+  }, []);
 
   return (
     <div className="container mx-auto py-10">
-      <DataTable columns={columns} data={data} />
+      <DataTable columns={columns} data={stations} />
     </div>
   );
 }
