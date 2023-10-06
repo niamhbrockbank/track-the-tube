@@ -29,7 +29,10 @@ export async function GET(req: NextRequest) {
         } = r;
         return {
           id: station_id,
-          name: name.replace("Rail Station", ""),
+          name: name
+            .replace("Rail Station", "")
+            .replace("DLR Station", "")
+            .replace("Underground Station", ""),
           status,
           rating,
           dateOfFirstVisit: date_of_vist,
