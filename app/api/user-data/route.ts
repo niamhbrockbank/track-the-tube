@@ -10,7 +10,8 @@ export async function GET(req: NextRequest) {
     const { rows } = await db.query(
       `SELECT * FROM user_data
       JOIN stations ON user_data.station_id = stations.station_id
-      WHERE user_id = $1`,
+      JOIN users ON user_data.user_id = users.user_id
+      WHERE users.user_id = $1`,
       [user_id]
     );
 
