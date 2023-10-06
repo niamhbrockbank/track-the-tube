@@ -1,4 +1,5 @@
 import { connectDatabase, db } from "@/lib/db/db";
+import { Station } from "@/types/globals.types";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
@@ -13,7 +14,31 @@ export async function GET(req: NextRequest) {
       WHERE user_id = $1`,
       [user_id]
     );
-    return NextResponse.json({ rows }, { status: 200 });
+
+    const userData = {
+      userId: rows[0].user_id,
+      userName: rows[0].user_name,
+      stations: rows.map((r) => {
+        const {
+          station_id,
+          name,
+          status,
+          rating,
+          date_of_vist,
+          purpose_of_visit,
+        } = r;
+        return {
+          id: station_id,
+          name,
+          status,
+          rating,
+          dateOfFirstVisit: date_of_vist,
+          purposeOfVisit: purpose_of_visit,
+        };
+      }),
+    };
+
+    return NextResponse.json({ userData }, { status: 200 });
   } catch (error) {
     console.error("Error executing query:", error);
     return NextResponse.json(
