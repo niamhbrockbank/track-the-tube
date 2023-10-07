@@ -27,7 +27,7 @@ export async function GET(req: NextRequest) {
           purpose_of_visit,
         } = r;
         return {
-          id: station_id,
+          stationId: station_id,
           name: name
             .replace("Rail Station", "")
             .replace("DLR Station", "")
@@ -84,6 +84,7 @@ export async function POST(req: NextRequest) {
 
 export async function PUT(req: NextRequest) {
   const jsonBody = await req.json();
+  console.log(jsonBody);
   const { station_id, status } = jsonBody;
 
   try {

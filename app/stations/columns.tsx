@@ -2,7 +2,7 @@
 
 import { ColumnDef } from "@tanstack/react-table";
 import { Station } from "@/types/globals.types";
-import StatusSelect from "@/components/ui/status-select";
+import StatusSelect, { Status } from "@/components/ui/status-select";
 
 /**
  * Define the core of what the table will look like
@@ -14,9 +14,9 @@ export const columns: ColumnDef<Station>[] = [
     accessorKey: "status",
     header: () => <div className="text-left">Status</div>,
     cell: ({ row }) => {
-      const status = row.getValue("status") || "none";
+      const status: Status = row.getValue("status") || "none";
       // @ts-ignore
-      return <StatusSelect status={status} />;
+      return <StatusSelect station={row.original} />;
     },
   },
   {

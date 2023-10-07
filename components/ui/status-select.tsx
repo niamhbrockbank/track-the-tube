@@ -6,24 +6,55 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Badge } from "./badge";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { Station } from "@/types/globals.types";
 
-type Status = "visited" | "passed through" | "changed" | "none";
+export type Status = "visited" | "passed through" | "changed" | "none";
 interface IProps {
-  status: Status;
+  station: Station;
 }
 
-export default function StatusSelect({ status }: IProps) {
-  const [newStatus, setNewStatus] = useState<Status>("none");
-  const variant = status === "passed through" ? "passedThrough" : status;
+export default function StatusSelect({ station }: IProps) {
+  const { stationId, status } = station;
+  const [shownStatus, setShownStatus] = useState<Status>("none");
+
+  useEffect(() => {
+    setShownStatus(status);
+  }, []);
+
   const statusOptions = ["visited", "passed through", "changed", "none"].filter(
-    (o) => o !== status
+    (o) => o !== shownStatus
   );
 
+  function updateStatus(value: Status) {
+    setShownStatus(value);
+
+    axios.put(
+      "http://localhost:3000/api/user-data",
+      { stationId, status: value },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+  }
+
   return (
-    <Select onValueChange={(value: Status) => setNewStatus(value)}>
+    <Select onValueChange={(v: Status) => updateStatus(v)}>
       <SelectTrigger className="w-[180px]">
-        <SelectValue placeholder={<Badge variant={variant}>{status}</Badge>} />
+        <SelectValue
+          placeholder={
+            <Badge
+              variant={
+                shownStatus === "passed through" ? "passedThrough" : shownStatus
+              }
+            >
+              {shownStatus}
+            </Badge>
+          }
+        />
       </SelectTrigger>
       <SelectContent>
         {statusOptions.map((s, i) => (
