@@ -2,7 +2,7 @@
 
 import { ColumnDef } from "@tanstack/react-table";
 import { Station } from "@/types/globals.types";
-import { Badge } from "@/components/ui/badge";
+import StatusSelect from "@/components/ui/status-select";
 
 /**
  * Define the core of what the table will look like
@@ -14,10 +14,9 @@ export const columns: ColumnDef<Station>[] = [
     accessorKey: "status",
     header: () => <div className="text-left">Status</div>,
     cell: ({ row }) => {
-      const status: "visited" | "passed through" | "changed" | "none" =
-        row.getValue("status") || "none";
-      const variant = status === "passed through" ? "passedThrough" : status;
-      return <Badge variant={variant}>{row.getValue("status")}</Badge>;
+      const status = row.getValue("status") || "none";
+      // @ts-ignore
+      return <StatusSelect status={status} />;
     },
   },
   {
