@@ -81,3 +81,27 @@ export async function POST(req: NextRequest) {
     );
   }
 }
+
+export async function PUT(req: NextRequest) {
+  const jsonBody = await req.json();
+  const { station_id, status } = jsonBody;
+
+  try {
+    const { rows } = await db.query(
+      `UPDATE user_data 
+      SET status = $1
+      WHERE user_id = 34446 
+      AND station_id = $2
+      RETURNING *`,
+      [status, station_id]
+    );
+
+    return NextResponse.json({ rows }, { status: 200 });
+  } catch (error) {
+    console.error("Error executing query:", error);
+    return NextResponse.json(
+      { error: "Internal Server Error" },
+      { status: 500 }
+    );
+  }
+}
