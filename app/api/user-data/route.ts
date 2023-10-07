@@ -1,6 +1,5 @@
 import { db } from "@/lib/db/db";
 import { NextRequest, NextResponse } from "next/server";
-import { json } from "stream/consumers";
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
