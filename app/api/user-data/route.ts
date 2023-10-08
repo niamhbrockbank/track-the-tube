@@ -1,6 +1,5 @@
 import { db } from "@/lib/db/db";
 import { NextRequest, NextResponse } from "next/server";
-import { json } from "stream/consumers";
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
@@ -28,7 +27,7 @@ export async function GET(req: NextRequest) {
           purpose_of_visit,
         } = r;
         return {
-          id: station_id,
+          stationId: station_id,
           name: name
             .replace("Rail Station", "")
             .replace("DLR Station", "")
@@ -74,6 +73,30 @@ export async function POST(req: NextRequest) {
     });
 
     return NextResponse.json({ user: rows[0] }, { status: 200 });
+  } catch (error) {
+    console.error("Error executing query:", error);
+    return NextResponse.json(
+      { error: "Internal Server Error" },
+      { status: 500 }
+    );
+  }
+}
+
+export async function PUT(req: NextRequest) {
+  const jsonBody = await req.json();
+  const { stationId, status } = jsonBody;
+
+  try {
+    const { rows } = await db.query(
+      `UPDATE user_data 
+      SET status = $1
+      WHERE user_id = 34446 
+      AND station_id = $2
+      RETURNING *`,
+      [status, stationId]
+    );
+
+    return NextResponse.json({ rows }, { status: 200 });
   } catch (error) {
     console.error("Error executing query:", error);
     return NextResponse.json(

@@ -1,5 +1,5 @@
 type BasicStation = {
-  id: string;
+  stationId: string;
   name: string;
   lines: string[];
   notes?: string;
