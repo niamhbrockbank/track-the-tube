@@ -23,15 +23,19 @@ export default function StatusSelect({ station }: IProps) {
   );
 
   function updateStatus(value: Status) {
-    axios.put(
-      "http://localhost:3000/api/user-data",
-      { stationId, status: value },
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    async function updateInDB() {
+      await axios.put(
+        "http://localhost:3000/api/user-data",
+        { stationId, status: value },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+    }
+
+    updateInDB();
   }
 
   return (
