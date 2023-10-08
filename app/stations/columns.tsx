@@ -19,23 +19,23 @@ export const columns: ColumnDef<Station>[] = [
       return <StatusSelect station={row.original} />;
     },
   },
-  {
-    accessorKey: "notes",
-    header: "Notes",
-    cell: ({ row }) => {
-      const note: string = row.getValue("notes");
-      if (!note) return;
+  // {
+  //   accessorKey: "notes",
+  //   header: "Notes",
+  //   cell: ({ row }) => {
+  //     const note: string = row.getValue("notes");
+  //     if (!note) return;
 
-      if (note.length > 10) {
-        return (
-          <div className="text-right font-medium">{`${note.slice(
-            0,
-            9
-          )}...`}</div>
-        );
-      }
+  //     if (note.length > 10) {
+  //       return (
+  //         <div className="text-right font-medium">{`${note.slice(
+  //           0,
+  //           9
+  //         )}...`}</div>
+  //       );
+  //     }
 
-      return <div className="text-right font-medium">{note}</div>;
-    },
-  },
+  //     return <div className="text-right font-medium">{note}</div>;
+  //   },
+  // },
 ];
