@@ -17,19 +17,12 @@ interface IProps {
 
 export default function StatusSelect({ station }: IProps) {
   const { stationId, status } = station;
-  const [shownStatus, setShownStatus] = useState<Status>("none");
-
-  useEffect(() => {
-    setShownStatus(status);
-  }, []);
 
   const statusOptions = ["visited", "passed through", "changed", "none"].filter(
-    (o) => o !== shownStatus
+    (o) => o !== status
   );
 
   function updateStatus(value: Status) {
-    setShownStatus(value);
-
     axios.put(
       "http://localhost:3000/api/user-data",
       { stationId, status: value },
@@ -47,11 +40,9 @@ export default function StatusSelect({ station }: IProps) {
         <SelectValue
           placeholder={
             <Badge
-              variant={
-                shownStatus === "passed through" ? "passedThrough" : shownStatus
-              }
+              variant={status === "passed through" ? "passedThrough" : status}
             >
-              {shownStatus}
+              {status}
             </Badge>
           }
         />
