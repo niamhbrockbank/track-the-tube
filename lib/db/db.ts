@@ -1,7 +1,7 @@
 import { Client } from "pg";
 
 const db = new Client({
-  connectionString: process.env.DB_URL,
+  connectionString: process.env.NEXT_PUBLIC_DB_URL,
   ssl: false,
 });
 
