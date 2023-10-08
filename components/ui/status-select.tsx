@@ -25,7 +25,7 @@ export default function StatusSelect({ station }: IProps) {
   function updateStatus(value: Status) {
     async function updateInDB() {
       await axios.put(
-        "http://localhost:3000/api/user-data",
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/user-data`,
         { stationId, status: value },
         {
           headers: {
