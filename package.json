@@ -1,5 +1,5 @@
 {
-  "name": "my-app",
+  "name": "track-the-tube",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,12 +9,19 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@radix-ui/react-select": "^2.0.0",
     "@radix-ui/react-slot": "^1.0.2",
     "@tanstack/react-table": "^8.10.3",
+    "@types/node": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "axios": "^1.5.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
+    "dotenv": "^16.3.1",
     "lucide-react": "^0.279.0",
     "next": "latest",
+    "pg": "^8.11.3",
     "react": "latest",
     "react-dom": "latest",
     "@types/node": "latest",
@@ -24,6 +31,7 @@
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
+    "@types/pg": "^8.10.3",
     "autoprefixer": "latest",
     "eslint": "latest",
     "eslint-config-next": "^13.5.4",
