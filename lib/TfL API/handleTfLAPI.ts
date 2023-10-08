@@ -61,11 +61,11 @@ const getStations = async () => {
 
 // getStations();
 
-import tubeStations from "@/tubeStationsFromAPI.json";
-import dlrStations from "@/dlrStationsFromAPI.json";
-import overgroundStations from "@/overgroundStationsFromAPI.json";
+import tubeStations from "./tubeStationsFromAPI.json";
+import dlrStations from "./dlrStationsFromAPI.json";
+import overgroundStations from "./overgroundStationsFromAPI.json";
 
-export default async function populateStationsDB() {
+export async function populateStationsDB() {
   for (const station of tubeStations) {
     axios.post(
       `${process.env.NEXT_PUBLIC_BASE_URL}/api/stations`,
@@ -104,3 +104,25 @@ export default async function populateStationsDB() {
 }
 
 // populateStationsDB();
+
+function populateStationsOnLinesDB() {
+  const allStations = [tubeStations, dlrStations, overgroundStations];
+
+  for (const type of allStations) {
+    for (const station of type) {
+      for (const line of station.lines) {
+        axios.post(
+          `http://localhost:3000/api/stations-on-lines`,
+          { stationId: station.id, lineId: line.id },
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+      }
+    }
+  }
+}
+
+// populateStationsOnLinesDB();
