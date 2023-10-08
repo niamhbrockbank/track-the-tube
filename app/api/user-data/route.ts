@@ -84,8 +84,7 @@ export async function POST(req: NextRequest) {
 
 export async function PUT(req: NextRequest) {
   const jsonBody = await req.json();
-  console.log(jsonBody);
-  const { station_id, status } = jsonBody;
+  const { stationId, status } = jsonBody;
 
   try {
     const { rows } = await db.query(
@@ -94,7 +93,7 @@ export async function PUT(req: NextRequest) {
       WHERE user_id = 34446 
       AND station_id = $2
       RETURNING *`,
-      [status, station_id]
+      [status, stationId]
     );
 
     return NextResponse.json({ rows }, { status: 200 });
