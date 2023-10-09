@@ -106,11 +106,11 @@ export async function populateStationsDB() {
 // populateStationsDB();
 
 function populateStationsOnLinesDB() {
-  const allStations = [tubeStations, dlrStations, overgroundStations];
+  // const allStations = [tubeStations, dlrStations, overgroundStations];
 
-  for (const type of allStations) {
-    for (const station of type) {
-      for (const line of station.lines) {
+  for (const station of tubeStations) {
+    for (const line of station.lines) {
+      try {
         axios.post(
           `http://localhost:3000/api/stations-on-lines`,
           { stationId: station.id, lineId: line.id },
@@ -120,6 +120,44 @@ function populateStationsOnLinesDB() {
             },
           }
         );
+      } catch (error) {
+        console.log(`cant add ${station.commonName}`);
+      }
+    }
+  }
+
+  for (const station of dlrStations) {
+    for (const line of station.lines) {
+      try {
+        axios.post(
+          `http://localhost:3000/api/stations-on-lines`,
+          { stationId: station.id, lineId: line.id },
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+      } catch (error) {
+        console.log(`cant add ${station.commonName}`);
+      }
+    }
+  }
+
+  for (const station of overgroundStations) {
+    for (const line of station.lines) {
+      try {
+        axios.post(
+          `http://localhost:3000/api/stations-on-lines`,
+          { stationId: station.id, lineId: line.id },
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+      } catch (error) {
+        console.log(`cant add ${station.commonName}`);
       }
     }
   }
