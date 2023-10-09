@@ -17,3 +17,12 @@ type StationInteraction =
     };
 
 export type Station = BasicStation & StationInteraction;
+
+export interface BasicLine {
+  line_id: string;
+  name: string;
+  colour: string;
+}
+export interface Line extends BasicLine {
+  status: number;
+}
