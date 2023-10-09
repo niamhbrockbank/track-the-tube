@@ -36,3 +36,5 @@ export const StationLines = forwardRef(
     );
   }
 );
+
+StationLines.displayName = "StationLines";
