@@ -20,14 +20,22 @@ import {
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 
-interface DataTableProps<TData, TValue> {
+import { Collapsible, CollapsibleContent } from "@/components/ui/collapsible";
+import { StationLines } from "@/components/ui/station-lines";
+import { Station } from "@/types/globals.types";
+
+export interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
+  stations: Station[];
+  setStations: React.Dispatch<React.SetStateAction<Station[]>>;
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
+  stations,
+  setStations,
 }: DataTableProps<TData, TValue>) {
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 
@@ -46,7 +54,7 @@ export function DataTable<TData, TValue>({
     <div>
       <div className="flex items-center py-4">
         <Input
-          placeholder="Filter stations..."
+          placeholder="Filter lines..."
           value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
             table.getColumn("name")?.setFilterValue(event.target.value)
@@ -77,19 +85,34 @@ export function DataTable<TData, TValue>({
           <TableBody>
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
-                <TableRow
-                  key={row.id}
-                  data-state={row.getIsSelected() && "selected"}
-                >
-                  {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext()
-                      )}
-                    </TableCell>
-                  ))}
-                </TableRow>
+                <Collapsible key={row.id} asChild>
+                  <>
+                    <TableRow
+                      key={row.id}
+                      data-state={row.getIsSelected() && "selected"}
+                      className={`border-y-2 hover:border-y-6 text-slate-500`}
+                    >
+                      {row.getVisibleCells().map((cell) => (
+                        <TableCell key={cell.id}>
+                          {flexRender(
+                            cell.column.columnDef.cell,
+                            cell.getContext()
+                          )}
+                        </TableCell>
+                      ))}
+                    </TableRow>
+
+                    <CollapsibleContent asChild>
+                      <StationLines
+                        setStations={setStations}
+                        stations={stations.filter((s) =>
+                          // @ts-ignore
+                          row.original.stations.includes(s.stationId)
+                        )}
+                      />
+                    </CollapsibleContent>
+                  </>
+                </Collapsible>
               ))
             ) : (
               <TableRow>
