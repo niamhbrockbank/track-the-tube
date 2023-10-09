@@ -2,7 +2,7 @@
 
 import { ColumnDef } from "@tanstack/react-table";
 import { Station } from "@/types/globals.types";
-import StatusSelect, { Status } from "@/components/ui/status-select";
+import StatusSelect from "@/components/ui/status-select";
 import { CollapsibleTrigger } from "@/components/ui/collapsible";
 
 /**
