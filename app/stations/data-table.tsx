@@ -88,7 +88,7 @@ export function DataTable<TData, TValue>({
                     <TableRow
                       key={row.id}
                       data-state={row.getIsSelected() && "selected"}
-                      className={`border-y-2 border-indigo-800 hover:border-y-4`}
+                      className={`border-y-2 border-indigo-800 hover:border-y-6`}
                     >
                       {row.getVisibleCells().map((cell) => (
                         <TableCell key={cell.id}>
