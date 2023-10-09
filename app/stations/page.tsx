@@ -45,7 +45,12 @@ export default function Stations() {
 
   return (
     <div className="container mx-auto py-10">
-      <DataTable columns={columns} data={lines} stations={stations} />
+      <DataTable
+        columns={columns}
+        data={lines}
+        stations={stations}
+        setStations={setStations}
+      />
     </div>
   );
 }

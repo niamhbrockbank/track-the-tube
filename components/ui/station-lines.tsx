@@ -4,18 +4,26 @@ import StatusSelect from "./status-select";
 import { forwardRef } from "react";
 
 export const StationLines = forwardRef(
-  (props: { stations: Station[] }, ref) => {
+  (
+    props: {
+      stations: Station[];
+    },
+    ref
+  ) => {
     const { stations } = { ...props };
+    const alphabeticalStations = stations.sort((a, b) =>
+      a.name.localeCompare(b.name)
+    );
+
     return (
       <>
-        {stations.map((station) => (
+        {alphabeticalStations.map((station) => (
           <TableRow key={station.stationId} data-state={station} {...props}>
             <TableCell>
               <>{station.name}</>
             </TableCell>
             <TableCell>
-              <>{station.status}</>
-              {/* <StatusSelect station={station} /> */}
+              <StatusSelect station={station} />
             </TableCell>
           </TableRow>
         ))}

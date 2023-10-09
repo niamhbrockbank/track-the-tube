@@ -22,7 +22,9 @@ export default function StatusSelect({ station }: IProps) {
     (o) => o !== status
   );
 
-  function updateStatus(value: Status) {
+  function updateStatus(
+    value: "visited" | "passed through" | "changed" | "none"
+  ) {
     async function updateInDB() {
       await axios.put(
         `${process.env.NEXT_PUBLIC_BASE_URL}/api/user-data`,
@@ -39,7 +41,11 @@ export default function StatusSelect({ station }: IProps) {
   }
 
   return (
-    <Select onValueChange={(v: Status) => updateStatus(v)}>
+    <Select
+      onValueChange={(v: "visited" | "passed through" | "changed" | "none") =>
+        updateStatus(v)
+      }
+    >
       <SelectTrigger className="w-[180px]">
         <SelectValue
           placeholder={
