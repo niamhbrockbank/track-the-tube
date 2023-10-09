@@ -20,20 +20,20 @@ import {
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/ui/collapsible";
+import { Collapsible, CollapsibleContent } from "@/components/ui/collapsible";
+import StationLines from "@/components/ui/station-lines";
+import { Station } from "@/types/globals.types";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
+  stations: Station[];
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
+  stations,
 }: DataTableProps<TData, TValue>) {
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 
@@ -100,7 +100,7 @@ export function DataTable<TData, TValue>({
                     </TableRow>
 
                     <CollapsibleContent>
-                      <div>hi</div>
+                      <StationLines stations={stations} />
                     </CollapsibleContent>
                   </>
                 </Collapsible>
