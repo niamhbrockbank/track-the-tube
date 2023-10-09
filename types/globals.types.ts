@@ -22,6 +22,7 @@ export interface BasicLine {
   line_id: string;
   name: string;
   colour: string;
+  stations: string[];
 }
 export interface Line extends BasicLine {
   status: number;

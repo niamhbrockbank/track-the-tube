@@ -24,7 +24,7 @@ import { Collapsible, CollapsibleContent } from "@/components/ui/collapsible";
 import StationLines from "@/components/ui/station-lines";
 import { Station } from "@/types/globals.types";
 
-interface DataTableProps<TData, TValue> {
+export interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
   stations: Station[];
@@ -100,7 +100,12 @@ export function DataTable<TData, TValue>({
                     </TableRow>
 
                     <CollapsibleContent>
-                      <StationLines stations={stations} />
+                      <StationLines
+                        stations={stations.filter((s) =>
+                          // @ts-ignore
+                          row.original.stations.includes(s.stationId)
+                        )}
+                      />
                     </CollapsibleContent>
                   </>
                 </Collapsible>
