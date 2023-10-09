@@ -6,5 +6,5 @@ export default async function mapStations(line_id: string) {
     [line_id]
   );
 
-  return stationRows;
+  return stationRows.map((s) => s.station_id);
 }
