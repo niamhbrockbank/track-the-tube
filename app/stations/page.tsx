@@ -1,17 +1,16 @@
 "use client";
 
 import { columns } from "./columns";
-import { Station } from "@/types/globals.types";
+import { BasicLine, Line, Station } from "@/types/globals.types";
 import { DataTable } from "./data-table";
 import { useEffect, useState } from "react";
 
-// TODO : use getStaticProps
-
 export default function Stations() {
   const [stations, setStations] = useState<Station[]>([]);
+  const [lines, setLines] = useState<Line[]>([]);
 
   useEffect(() => {
-    const getStations = async () => {
+    const fetchStations = async () => {
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_BASE_URL}/api/user-data?id=34446`
       );
@@ -19,8 +18,23 @@ export default function Stations() {
       setStations(jsonBody.stations);
     };
 
-    getStations();
+    fetchStations();
   }, []);
+
+  useEffect(() => {
+    const fetchLines = async () => {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/lines`);
+      const jsonBody = await res.json();
+      const { lines: newLines } = jsonBody;
+
+      setLines(
+        newLines.map((l: BasicLine) => {
+          return { ...l, status: 0 };
+        })
+      );
+    };
+    fetchLines();
+  }, [stations]);
 
   return (
     <div className="container mx-auto py-10">
