@@ -7,10 +7,11 @@ export const StationLines = forwardRef(
   (
     props: {
       stations: Station[];
+      setStations: React.Dispatch<React.SetStateAction<Station[]>>;
     },
     ref
   ) => {
-    const { stations } = { ...props };
+    const { stations, setStations } = { ...props };
     const alphabeticalStations = stations.sort((a, b) =>
       a.name.localeCompare(b.name)
     );
@@ -23,7 +24,11 @@ export const StationLines = forwardRef(
               <>{station.name}</>
             </TableCell>
             <TableCell>
-              <StatusSelect station={station} />
+              <StatusSelect
+                station={station}
+                stations={stations}
+                setStations={setStations}
+              />
             </TableCell>
           </TableRow>
         ))}

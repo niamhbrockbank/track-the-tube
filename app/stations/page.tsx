@@ -15,7 +15,10 @@ export default function Stations() {
         `${process.env.NEXT_PUBLIC_BASE_URL}/api/user-data?id=34446`
       );
       const jsonBody: { stations: Station[] } = await response.json();
-      setStations(jsonBody.stations);
+      const alphabeticalStations = jsonBody.stations.sort((a, b) =>
+        a.name.localeCompare(b.name)
+      );
+      setStations(alphabeticalStations);
     };
 
     fetchStations();

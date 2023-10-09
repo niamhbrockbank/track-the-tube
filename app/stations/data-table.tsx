@@ -104,6 +104,7 @@ export function DataTable<TData, TValue>({
 
                     <CollapsibleContent asChild>
                       <StationLines
+                        setStations={setStations}
                         stations={stations.filter((s) =>
                           // @ts-ignore
                           row.original.stations.includes(s.stationId)

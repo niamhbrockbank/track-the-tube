@@ -13,18 +13,26 @@ import { Station } from "@/types/globals.types";
 export type Status = "visited" | "passed through" | "changed" | "none";
 interface IProps {
   station: Station;
+  stations: Station[];
+  setStations: React.Dispatch<React.SetStateAction<Station[]>>;
 }
 
-export default function StatusSelect({ station }: IProps) {
+export default function StatusSelect({
+  station,
+  stations,
+  setStations,
+}: IProps) {
   const { stationId, status } = station;
 
-  const statusOptions = ["visited", "passed through", "changed", "none"].filter(
-    (o) => o !== status
-  );
+  const statusOptions = ["visited", "passed through", "changed", "none"];
 
-  function updateStatus(
-    value: "visited" | "passed through" | "changed" | "none"
-  ) {
+  function updateStatus(value: Status) {
+    const updatedStation = { ...station, status: value };
+    const otherStations = stations.filter((s) => s.stationId !== stationId);
+
+    // @ts-ignore
+    setStations([...otherStations, updatedStation]);
+
     async function updateInDB() {
       await axios.put(
         `${process.env.NEXT_PUBLIC_BASE_URL}/api/user-data`,
@@ -41,11 +49,7 @@ export default function StatusSelect({ station }: IProps) {
   }
 
   return (
-    <Select
-      onValueChange={(v: "visited" | "passed through" | "changed" | "none") =>
-        updateStatus(v)
-      }
-    >
+    <Select onValueChange={(v: Status) => updateStatus(v)}>
       <SelectTrigger className="w-[180px]">
         <SelectValue
           placeholder={
@@ -58,8 +62,8 @@ export default function StatusSelect({ station }: IProps) {
         />
       </SelectTrigger>
       <SelectContent>
-        {statusOptions.map((s, i) => (
-          <SelectItem value={s} key={i}>
+        {statusOptions.map((s) => (
+          <SelectItem value={s} key={s}>
             {/* @ts-ignore */}
             <Badge variant={s === "passed through" ? "passedThrough" : s}>
               {s}
