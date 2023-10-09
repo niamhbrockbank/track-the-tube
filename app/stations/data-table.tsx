@@ -23,6 +23,7 @@ import { useState } from "react";
 import { Collapsible, CollapsibleContent } from "@/components/ui/collapsible";
 import { StationLines } from "@/components/ui/station-lines";
 import { Station } from "@/types/globals.types";
+import getLineId from "@/lib/getLineId";
 
 export interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -88,7 +89,7 @@ export function DataTable<TData, TValue>({
                     <TableRow
                       key={row.id}
                       data-state={row.getIsSelected() && "selected"}
-                      className={`border-y-2 border-indigo-800 hover:border-y-6`}
+                      className={`border-y-2 hover:border-y-6 text-slate-500`}
                     >
                       {row.getVisibleCells().map((cell) => (
                         <TableCell key={cell.id}>
