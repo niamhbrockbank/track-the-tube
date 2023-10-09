@@ -23,7 +23,6 @@ import { useState } from "react";
 import { Collapsible, CollapsibleContent } from "@/components/ui/collapsible";
 import { StationLines } from "@/components/ui/station-lines";
 import { Station } from "@/types/globals.types";
-import getLineId from "@/lib/getLineId";
 
 export interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
