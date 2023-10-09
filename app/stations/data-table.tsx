@@ -21,7 +21,7 @@ import { Input } from "@/components/ui/input";
 import { useState } from "react";
 
 import { Collapsible, CollapsibleContent } from "@/components/ui/collapsible";
-import StationLines from "@/components/ui/station-lines";
+import { StationLines } from "@/components/ui/station-lines";
 import { Station } from "@/types/globals.types";
 
 export interface DataTableProps<TData, TValue> {
