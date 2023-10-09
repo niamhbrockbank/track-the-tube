@@ -1,9 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db/db";
+import getLines from "@/lib/api/lines/getLines";
 
 export async function GET() {
   try {
-    const { rows } = await db.query("SELECT * FROM lines");
+    const { rows } = await getLines();
     return NextResponse.json({ lines: rows }, { status: 200 });
   } catch (error) {
     console.error("Error executing query:", error);
