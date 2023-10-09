@@ -3,13 +3,22 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { Station } from "@/types/globals.types";
 import StatusSelect, { Status } from "@/components/ui/status-select";
+import { CollapsibleTrigger } from "@/components/ui/collapsible";
 
 /**
  * Define the core of what the table will look like
  * Define how the data will be displayed, formatted, sorted and filtered
  */
 export const columns: ColumnDef<Station>[] = [
-  { accessorKey: "name", header: "Station" },
+  {
+    accessorKey: "name",
+    header: "Station",
+    cell: ({ row }) => (
+      <CollapsibleTrigger>
+        <div>{row.getValue("name")}</div>
+      </CollapsibleTrigger>
+    ),
+  },
   {
     accessorKey: "status",
     header: () => <div className="text-left">Status</div>,
