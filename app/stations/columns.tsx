@@ -23,7 +23,6 @@ export const columns: ColumnDef<Station>[] = [
     accessorKey: "status",
     header: () => <div className="text-left">Status</div>,
     cell: ({ row }) => {
-      const status: Status = row.getValue("status") || "none";
       // @ts-ignore
       return <StatusSelect station={row.original} />;
     },
