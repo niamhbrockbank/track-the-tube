@@ -10,11 +10,12 @@ export default function StationLines({ stations }: IProps): JSX.Element {
     <>
       {stations.map((station) => (
         <TableRow key={station.stationId} data-state={station}>
-          {Object.values(station).map((cell, i) => (
-            <TableCell key={i}>
-              <>{cell}</>
-            </TableCell>
-          ))}
+          <TableCell>
+            <>{station.name}</>
+          </TableCell>
+          <TableCell>
+            <>{station.status}</>
+          </TableCell>
         </TableRow>
       ))}
     </>

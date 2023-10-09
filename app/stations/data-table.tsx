@@ -99,7 +99,7 @@ export function DataTable<TData, TValue>({
                       ))}
                     </TableRow>
 
-                    <CollapsibleContent>
+                    <CollapsibleContent asChild>
                       <StationLines
                         stations={stations.filter((s) =>
                           // @ts-ignore
