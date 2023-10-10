@@ -84,36 +84,41 @@ export function DataTable<TData, TValue>({
           </TableHeader>
           <TableBody>
             {table.getRowModel().rows?.length ? (
-              table.getRowModel().rows.map((row) => (
-                <Collapsible key={row.id} asChild>
-                  <>
-                    <TableRow
-                      key={row.id}
-                      data-state={row.getIsSelected() && "selected"}
-                      className={`border-y-2 hover:border-y-6 text-slate-500`}
-                    >
-                      {row.getVisibleCells().map((cell) => (
-                        <TableCell key={cell.id}>
-                          {flexRender(
-                            cell.column.columnDef.cell,
-                            cell.getContext()
-                          )}
-                        </TableCell>
-                      ))}
-                    </TableRow>
+              table.getRowModel().rows.map((row) => {
+                // @ts-ignore
+                const rowColor = row.original.line_id;
 
-                    <CollapsibleContent asChild>
-                      <StationLines
-                        setStations={setStations}
-                        stations={stations.filter((s) =>
-                          // @ts-ignore
-                          row.original.stations.includes(s.stationId)
-                        )}
-                      />
-                    </CollapsibleContent>
-                  </>
-                </Collapsible>
-              ))
+                return (
+                  <Collapsible key={row.id} asChild>
+                    <>
+                      <TableRow
+                        key={row.id}
+                        data-state={row.getIsSelected() && "selected"}
+                        className={`border-y-2 hover:border-y-6 text-${rowColor}`}
+                      >
+                        {row.getVisibleCells().map((cell) => (
+                          <TableCell key={cell.id}>
+                            {flexRender(
+                              cell.column.columnDef.cell,
+                              cell.getContext()
+                            )}
+                          </TableCell>
+                        ))}
+                      </TableRow>
+
+                      <CollapsibleContent asChild>
+                        <StationLines
+                          setStations={setStations}
+                          stations={stations.filter((s) =>
+                            // @ts-ignore
+                            row.original.stations.includes(s.stationId)
+                          )}
+                        />
+                      </CollapsibleContent>
+                    </>
+                  </Collapsible>
+                );
+              })
             ) : (
               <TableRow>
                 <TableCell
