@@ -22,7 +22,7 @@ import { useState } from "react";
 
 import { Collapsible, CollapsibleContent } from "@/components/ui/collapsible";
 import { StationLines } from "@/components/ui/station-lines";
-import { Station } from "@/types/globals.types";
+import { Line, Station } from "@/types/globals.types";
 
 export interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -31,7 +31,7 @@ export interface DataTableProps<TData, TValue> {
   setStations: React.Dispatch<React.SetStateAction<Station[]>>;
 }
 
-export function DataTable<TData, TValue>({
+export function DataTable<TData extends Line, TValue>({
   columns,
   data,
   stations,
@@ -89,7 +89,11 @@ export function DataTable<TData, TValue>({
                 const rowColor = row.original.line_id;
 
                 return (
-                  <Collapsible key={row.id} asChild>
+                  <Collapsible
+                    key={row.id}
+                    asChild
+                    defaultOpen={rowColor === "piccadilly"}
+                  >
                     <>
                       <TableRow
                         key={row.id}
@@ -109,10 +113,8 @@ export function DataTable<TData, TValue>({
                       <CollapsibleContent asChild>
                         <StationLines
                           setStations={setStations}
-                          stations={stations.filter((s) =>
-                            // @ts-ignore
-                            row.original.stations.includes(s.stationId)
-                          )}
+                          stations={stations}
+                          line={row.original}
                         />
                       </CollapsibleContent>
                     </>
