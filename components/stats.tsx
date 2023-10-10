@@ -17,7 +17,7 @@ export default function Stats({ stations }: IProps) {
       <Card>
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
           <CardTitle className="text-sm font-medium">Total Stations</CardTitle>
-          <TrainFront />
+          <TrainFront color="#a6aeba" />
         </CardHeader>
         <CardContent>
           <div className="text-2xl font-bold">{total}</div>
@@ -27,7 +27,7 @@ export default function Stats({ stations }: IProps) {
       <Card>
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
           <CardTitle className="text-sm font-medium">No. Visited</CardTitle>
-          <TrainFront />
+          <TrainFront color="#a6aeba" />
         </CardHeader>
         <CardContent>
           <div className="text-2xl font-bold">{visited}</div>
@@ -37,7 +37,7 @@ export default function Stats({ stations }: IProps) {
       <Card>
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
           <CardTitle className="text-sm font-medium">No. Changed At</CardTitle>
-          <Activity />
+          <Activity color="#a6aeba" />
         </CardHeader>
         <CardContent>
           <div className="text-2xl font-bold">{changed}</div>
@@ -49,7 +49,7 @@ export default function Stats({ stations }: IProps) {
           <CardTitle className="text-sm font-medium">
             No. Passed Through
           </CardTitle>
-          <Activity />
+          <Activity color="#a6aeba" />
         </CardHeader>
         <CardContent>
           <div className="text-2xl font-bold">{passed}</div>
