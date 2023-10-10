@@ -1,13 +1,17 @@
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Station } from "@/types/globals.types";
 import { Activity, TrainFront } from "lucide-react";
 
-export default function Stats() {
+interface IProps {
+  stations: Station[];
+}
+
+export default function Stats({ stations }: IProps) {
+  const total = stations.length;
+  const visited = stations.filter((s) => s.status === "visited").length;
+  const changed = stations.filter((s) => s.status === "changed").length;
+  const passed = stations.filter((s) => s.status === "passed through").length;
+
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
       <Card>
@@ -16,14 +20,9 @@ export default function Stats() {
           <TrainFront />
         </CardHeader>
         <CardContent>
-          <div className="text-2xl font-bold">$45,231.89</div>
-          <p className="text-xs text-muted-foreground">
-            +20.1% from last month
-          </p>
+          <div className="text-2xl font-bold">{total}</div>
+          <p className="text-xs text-muted-foreground">Visit them all!</p>
         </CardContent>
-        <CardFooter>
-          <p>Card Footer</p>
-        </CardFooter>
       </Card>
       <Card>
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -31,14 +30,9 @@ export default function Stats() {
           <TrainFront />
         </CardHeader>
         <CardContent>
-          <div className="text-2xl font-bold">$45,231.89</div>
-          <p className="text-xs text-muted-foreground">
-            +20.1% from last month
-          </p>
+          <div className="text-2xl font-bold">{visited}</div>
+          <p className="text-xs text-muted-foreground">+3% from last month</p>
         </CardContent>
-        <CardFooter>
-          <p>Card Footer</p>
-        </CardFooter>
       </Card>
       <Card>
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -46,14 +40,9 @@ export default function Stats() {
           <Activity />
         </CardHeader>
         <CardContent>
-          <div className="text-2xl font-bold">$45,231.89</div>
-          <p className="text-xs text-muted-foreground">
-            +20.1% from last month
-          </p>
+          <div className="text-2xl font-bold">{changed}</div>
+          <p className="text-xs text-muted-foreground">+19% from last month</p>
         </CardContent>
-        <CardFooter>
-          <p>Card Footer</p>
-        </CardFooter>
       </Card>
       <Card>
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -63,14 +52,11 @@ export default function Stats() {
           <Activity />
         </CardHeader>
         <CardContent>
-          <div className="text-2xl font-bold">$45,231.89</div>
+          <div className="text-2xl font-bold">{passed}</div>
           <p className="text-xs text-muted-foreground">
             +20.1% from last month
           </p>
         </CardContent>
-        <CardFooter>
-          <p>Card Footer</p>
-        </CardFooter>
       </Card>
     </div>
   );
