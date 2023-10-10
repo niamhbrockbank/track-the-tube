@@ -24,7 +24,6 @@ export const columns: ColumnDef<Line>[] = [
     header: () => <div className="text-center">Status</div>,
     cell: ({ row }) => {
       const status = row.getValue("status");
-      console.log(status);
       // @ts-ignore
       return <Gauge value={status} size="small" showValue={true} />;
     },
