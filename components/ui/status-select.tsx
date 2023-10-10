@@ -6,7 +6,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Badge } from "./badge";
-import { useEffect, useState } from "react";
 import axios from "axios";
 import { Station } from "@/types/globals.types";
 
