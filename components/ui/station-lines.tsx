@@ -34,7 +34,6 @@ export const StationLines = forwardRef(
                 stations={stations}
                 setStations={setStations}
               />
-              {/* <div className="text-center">{station.status}</div> */}
             </TableCell>
           </TableRow>
         ))}
