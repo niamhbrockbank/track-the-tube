@@ -49,7 +49,7 @@ export default function StatusSelect({
 
   return (
     <Select onValueChange={(v: Status) => updateStatus(v)}>
-      <SelectTrigger className="w-[180px]">
+      <SelectTrigger>
         <SelectValue
           placeholder={
             <Badge
