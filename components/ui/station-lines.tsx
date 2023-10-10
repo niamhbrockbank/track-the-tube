@@ -28,12 +28,13 @@ export const StationLines = forwardRef(
             <TableCell>
               <>{station.name}</>
             </TableCell>
-            <TableCell>
+            <TableCell className="w-52">
               <StatusSelect
                 station={station}
                 stations={stations}
                 setStations={setStations}
               />
+              {/* <div className="text-center">{station.status}</div> */}
             </TableCell>
           </TableRow>
         ))}
