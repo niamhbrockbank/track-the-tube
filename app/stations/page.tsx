@@ -5,6 +5,7 @@ import { BasicLine, Line, Station } from "@/types/globals.types";
 import { DataTable } from "./data-table";
 import { useEffect, useState } from "react";
 import Stats from "@/components/stats";
+import NavBar from "@/components/nav-bar";
 
 export default function Stations() {
   const [stations, setStations] = useState<Station[]>([]);
@@ -45,14 +46,17 @@ export default function Stations() {
   }, [stations]);
 
   return (
-    <div className="container mx-auto py-10">
-      <Stats stations={stations} />
-      <DataTable
-        columns={columns}
-        data={lines}
-        stations={stations}
-        setStations={setStations}
-      />
-    </div>
+    <>
+      <NavBar />
+      <div className="container mx-auto py-10">
+        <Stats stations={stations} />
+        <DataTable
+          columns={columns}
+          data={lines}
+          stations={stations}
+          setStations={setStations}
+        />
+      </div>
+    </>
   );
 }
