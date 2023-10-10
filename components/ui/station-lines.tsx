@@ -1,4 +1,4 @@
-import { Station } from "@/types/globals.types";
+import { Line, Station } from "@/types/globals.types";
 import { TableRow, TableCell } from "./table";
 import StatusSelect from "./status-select";
 import { forwardRef } from "react";
@@ -8,11 +8,15 @@ export const StationLines = forwardRef(
     props: {
       stations: Station[];
       setStations: React.Dispatch<React.SetStateAction<Station[]>>;
+      line: Line;
     },
     ref
   ) => {
-    const { stations, setStations } = { ...props };
-    const alphabeticalStations = stations.sort((a, b) =>
+    const { stations, setStations, line } = { ...props };
+    const stationsOnLine = stations.filter((s) =>
+      line.stations.includes(s.stationId)
+    );
+    const alphabeticalStations = stationsOnLine.sort((a, b) =>
       a.name.localeCompare(b.name)
     );
 
