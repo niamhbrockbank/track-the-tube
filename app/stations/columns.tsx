@@ -14,11 +14,7 @@ export const columns: ColumnDef<Line>[] = [
   {
     accessorKey: "name",
     header: "Name",
-    cell: ({ row }) => (
-      <CollapsibleTrigger>
-        <div>{row.getValue("name")}</div>
-      </CollapsibleTrigger>
-    ),
+    cell: ({ row }) => <div>{row.getValue("name")}</div>,
   },
   {
     accessorKey: "status",
@@ -30,7 +26,9 @@ export const columns: ColumnDef<Line>[] = [
         <div className="flex flex-row items-center justify-center gap-4">
           {/* @ts-ignore */}
           <Gauge value={status} size="small" showValue={true} />
-          <ChevronsUpDown className="h-6 w-6" />
+          <CollapsibleTrigger>
+            <ChevronsUpDown className="h-6 w-6" />
+          </CollapsibleTrigger>
         </div>
       );
     },
