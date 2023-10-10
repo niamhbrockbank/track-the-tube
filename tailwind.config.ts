@@ -8,7 +8,7 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      textColor: {
+      colors: {
         bakerloo: "#894E24",
         central: "#DC241F",
         circle: "#FFCE27",
@@ -16,11 +16,11 @@ const config: Config = {
         dlr: "#00AFAD",
         elizabeth: "#6950A1",
         "hammersmith-city": "#D799AF",
-        jubilee: "5E656A",
+        jubilee: "#697278",
         "london-overground": "#E86A10",
         metropolitan: "#751156",
         northern: "#000000",
-        piccadilly: "#751156",
+        piccadilly: "#0C19A8",
         victoria: "#00A0E2",
         "waterloo-city": "#76D0BD",
       },
@@ -32,5 +32,11 @@ const config: Config = {
     },
   },
   plugins: [],
+  safelist: [
+    {
+      pattern:
+        /(bg|text|border)-(bakerloo|central|circle|district|dlr|elizabeth|hammersmith-city|jubilee|london-overground|metropolitan|northern|piccadilly|victoria|waterloo-city)/,
+    },
+  ],
 };
 export default config;
