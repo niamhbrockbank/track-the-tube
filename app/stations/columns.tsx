@@ -3,6 +3,7 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { Line } from "@/types/globals.types";
 import { CollapsibleTrigger } from "@/components/ui/collapsible";
+import { Gauge } from "@/components/ui/gauge";
 
 /**
  * Define the core of what the table will look like
@@ -20,7 +21,12 @@ export const columns: ColumnDef<Line>[] = [
   },
   {
     accessorKey: "status",
-    header: "Status",
-    cell: ({ row }) => <div>{row.getValue("status")}%</div>,
+    header: () => <div className="text-center">Status</div>,
+    cell: ({ row }) => {
+      const status = row.getValue("status");
+      console.log(status);
+      // @ts-ignore
+      return <Gauge value={status} size="small" showValue={true} />;
+    },
   },
 ];
