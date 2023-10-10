@@ -4,6 +4,7 @@ import { columns } from "./columns";
 import { BasicLine, Line, Station } from "@/types/globals.types";
 import { DataTable } from "./data-table";
 import { useEffect, useState } from "react";
+import Stats from "@/components/stats";
 
 export default function Stations() {
   const [stations, setStations] = useState<Station[]>([]);
@@ -45,6 +46,7 @@ export default function Stations() {
 
   return (
     <div className="container mx-auto py-10">
+      <Stats stations={stations} />
       <DataTable
         columns={columns}
         data={lines}
