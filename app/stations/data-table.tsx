@@ -89,7 +89,11 @@ export function DataTable<TData, TValue>({
                 const rowColor = row.original.line_id;
 
                 return (
-                  <Collapsible key={row.id} asChild>
+                  <Collapsible
+                    key={row.id}
+                    asChild
+                    defaultOpen={rowColor === "piccadilly"}
+                  >
                     <>
                       <TableRow
                         key={row.id}
