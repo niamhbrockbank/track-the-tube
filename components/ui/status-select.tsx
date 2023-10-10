@@ -6,7 +6,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Badge } from "./badge";
-import { useEffect, useState } from "react";
 import axios from "axios";
 import { Station } from "@/types/globals.types";
 
@@ -50,7 +49,7 @@ export default function StatusSelect({
 
   return (
     <Select onValueChange={(v: Status) => updateStatus(v)}>
-      <SelectTrigger className="w-[180px]">
+      <SelectTrigger>
         <SelectValue
           placeholder={
             <Badge
