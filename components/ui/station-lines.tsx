@@ -19,7 +19,12 @@ export const StationLines = forwardRef(
     return (
       <>
         {alphabeticalStations.map((station) => (
-          <TableRow key={station.stationId} data-state={station} {...props}>
+          <TableRow
+            key={station.stationId}
+            data-state={station}
+            className="text-slate-500"
+            {...props}
+          >
             <TableCell>
               <>{station.name}</>
             </TableCell>
