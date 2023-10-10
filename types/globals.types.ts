@@ -25,5 +25,7 @@ export interface BasicLine {
   stations: string[];
 }
 export interface Line extends BasicLine {
-  status: number;
+  status: {
+    visited: number;
+  };
 }

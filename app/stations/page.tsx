@@ -32,14 +32,11 @@ export default function Stations() {
 
       setLines(
         newLines.map((l: BasicLine) => {
-          const numStations = l.stations.length;
           const numStationsVisited = stations.filter(
             (s) => s.status === "visited" && l.stations.includes(s.stationId)
           ).length;
 
-          const status = Math.round((numStationsVisited / numStations) * 100);
-
-          return { ...l, status };
+          return { ...l, status: { visited: numStationsVisited } };
         })
       );
     };
