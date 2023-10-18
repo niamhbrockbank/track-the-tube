@@ -1,4 +1,7 @@
 import { Button } from "@/components/ui/button";
+import firebase from "firebase/compat/app";
+import * as firebaseui from "firebaseui";
+import "firebaseui/dist/firebaseui.css";
 import Link from "next/link";
 
 export default function Home() {
