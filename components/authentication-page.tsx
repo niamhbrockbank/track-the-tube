@@ -1,25 +1,14 @@
 import Link from "next/link";
-import { Button, buttonVariants } from "./ui/button";
-import { Auth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { buttonVariants } from "./ui/button";
+import { Auth } from "firebase/auth";
 import { cn } from "@/lib/utils";
 import { TrainFront } from "lucide-react";
-import { Input } from "./ui/input";
 import UserAuthForm from "./user-auth-form";
 
 interface Props {
   auth: Auth;
 }
 export default function AuthenticationPage({ auth }: Props): JSX.Element {
-  const provider = new GoogleAuthProvider();
-  const handleSignInWithGoogle = async () => {
-    try {
-      const response = await signInWithPopup(auth, provider);
-      console.log(response);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   return (
     <>
       <div className="flex min-h-screen flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
@@ -60,16 +49,7 @@ export default function AuthenticationPage({ auth }: Props): JSX.Element {
                 Enter your email below to create your account
               </p>
             </div>
-            <UserAuthForm />
-            <Button onClick={handleSignInWithGoogle}>
-              Sign in with Google
-            </Button>
-            <Link
-              href="/stations"
-              className="px-8 text-center text-sm text-muted-foreground underline underline-offset-4 hover:text-primary"
-            >
-              Continue as Guest
-            </Link>
+            <UserAuthForm auth={auth} />
           </div>
         </div>
       </div>
