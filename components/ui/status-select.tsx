@@ -10,7 +10,7 @@ import axios from "axios";
 import { Station } from "@/types/globals.types";
 
 export type Status = "visited" | "passed through" | "changed" | "none";
-interface IProps {
+interface Props {
   station: Station;
   stations: Station[];
   setStations: React.Dispatch<React.SetStateAction<Station[]>>;
@@ -20,7 +20,7 @@ export default function StatusSelect({
   station,
   stations,
   setStations,
-}: IProps) {
+}: Props) {
   const { stationId, status } = station;
 
   const statusOptions = ["visited", "passed through", "changed", "none"];

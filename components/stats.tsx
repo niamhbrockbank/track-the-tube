@@ -2,11 +2,11 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Station } from "@/types/globals.types";
 import { Activity, TrainFront } from "lucide-react";
 
-interface IProps {
+interface Props {
   stations: Station[];
 }
 
-export default function Stats({ stations }: IProps) {
+export default function Stats({ stations }: Props) {
   const total = stations.length;
   const visited = stations.filter((s) => s.status === "visited").length;
   const changed = stations.filter((s) => s.status === "changed").length;

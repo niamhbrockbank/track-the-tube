@@ -3,10 +3,10 @@ import { Button, buttonVariants } from "./ui/button";
 import { Auth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { cn } from "@/lib/utils";
 
-interface IProps {
+interface Props {
   auth: Auth;
 }
-export default function AuthenticationPage({ auth }: IProps): JSX.Element {
+export default function AuthenticationPage({ auth }: Props): JSX.Element {
   const provider = new GoogleAuthProvider();
   const handleSignInWithGoogle = async () => {
     try {
