@@ -44,10 +44,13 @@ export default function Home() {
         <>{redirect("/stations")}</>
       ) : (
         <main className="flex min-h-screen flex-col items-center justify-between p-24">
-          <Button>
-            <Link href="/stations">Sign in</Link>
-          </Button>
           <Button onClick={handleSignInWithGoogle}>Sign in with Google</Button>
+          <Link
+            href="/stations"
+            className="underline underline-offset-4 hover:text-primary"
+          >
+            Continue as Guest
+          </Link>
         </main>
       )}
     </>
