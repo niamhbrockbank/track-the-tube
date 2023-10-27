@@ -12,7 +12,7 @@ export default function AuthenticationPage({ auth }: Props): JSX.Element {
   return (
     <>
       <div className="flex min-h-screen flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
-        <Link
+        {/* <Link
           href="/examples/authentication"
           className={cn(
             buttonVariants({ variant: "ghost" }),
@@ -20,7 +20,7 @@ export default function AuthenticationPage({ auth }: Props): JSX.Element {
           )}
         >
           Login
-        </Link>
+        </Link> */}
         <div className="relative hidden h-full flex-col bg-muted p-10 text-white dark:border-r lg:flex">
           <div className="absolute inset-0 bg-zinc-900" />
           <div className="relative z-20 flex items-center text-lg font-medium">
