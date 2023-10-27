@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Button, buttonVariants } from "./ui/button";
 import { Auth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { cn } from "@/lib/utils";
+import { TrainFront } from "lucide-react";
 
 interface Props {
   auth: Auth;
@@ -32,28 +33,18 @@ export default function AuthenticationPage({ auth }: Props): JSX.Element {
         <div className="relative hidden h-full flex-col bg-muted p-10 text-white dark:border-r lg:flex">
           <div className="absolute inset-0 bg-zinc-900" />
           <div className="relative z-20 flex items-center text-lg font-medium">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="mr-2 h-6 w-6"
-            >
-              <path d="M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3" />
-            </svg>
-            Acme Inc
+            <TrainFront className="mr-2" />
+            Track the Tube
           </div>
           <div className="relative z-20 mt-auto">
             <blockquote className="space-y-2">
               <p className="text-lg">
-                &ldquo;This library has saved me countless hours of work and
-                helped me deliver stunning designs to my clients faster than
-                ever before.&rdquo;
+                &ldquo;Track the Tube aims to transform the daily routine of
+                taking the tube into an exciting adventure, making users
+                appreciate the vast underground network and rediscover the joy
+                of commuting.&rdquo;
               </p>
-              <footer className="text-sm">Sofia Davis</footer>
+              <footer className="text-sm">Track the Tube</footer>
             </blockquote>
           </div>
         </div>
