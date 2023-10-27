@@ -6,8 +6,13 @@ import { DataTable } from "./data-table";
 import { useEffect, useState } from "react";
 import Stats from "@/components/stats";
 import NavBar from "@/components/nav-bar";
+import { User } from "firebase/auth";
 
-export default function Stations() {
+interface Props {
+  user: User;
+}
+
+export default function Stations({ user }: Props) {
   const [stations, setStations] = useState<Station[]>([]);
   const [lines, setLines] = useState<Line[]>([]);
 

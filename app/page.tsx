@@ -4,8 +4,8 @@ import "firebaseui/dist/firebaseui.css";
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { redirect } from "next/navigation";
 import AuthenticationPage from "@/components/authentication-page";
+import Stations from "./stations/page";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -26,8 +26,6 @@ export default function Home() {
   const [user] = useAuthState(auth);
 
   return (
-    <>
-      {user ? <>{redirect("/stations")}</> : <AuthenticationPage auth={auth} />}
-    </>
+    <>{user ? <Stations user={user} /> : <AuthenticationPage auth={auth} />}</>
   );
 }
