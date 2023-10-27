@@ -3,6 +3,8 @@ import { Button, buttonVariants } from "./ui/button";
 import { Auth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { cn } from "@/lib/utils";
 import { TrainFront } from "lucide-react";
+import { Input } from "./ui/input";
+import UserAuthForm from "./user-auth-form";
 
 interface Props {
   auth: Auth;
@@ -58,7 +60,7 @@ export default function AuthenticationPage({ auth }: Props): JSX.Element {
                 Enter your email below to create your account
               </p>
             </div>
-            {/* <UserAuthForm /> */}
+            <UserAuthForm />
             <Button onClick={handleSignInWithGoogle}>
               Sign in with Google
             </Button>
