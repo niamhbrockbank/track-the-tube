@@ -29,6 +29,7 @@ export default function Stations({ user }: Props) {
     };
 
     fetchStations();
+    console.log(user);
   }, []);
 
   useEffect(() => {
