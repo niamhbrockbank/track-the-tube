@@ -19,7 +19,7 @@ export default function Stations({ user }: Props) {
   useEffect(() => {
     const fetchStations = async () => {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/api/user-data?id=34446`
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/user-data?id=${user.uid}`
       );
       const jsonBody: { stations: Station[] } = await response.json();
       const alphabeticalStations = jsonBody.stations.sort((a, b) =>
