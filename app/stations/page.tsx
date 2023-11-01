@@ -54,14 +54,21 @@ export default function Stations({ user }: Props) {
   return (
     <>
       <NavBar />
+
       <div className="container mx-auto py-10">
-        <Stats stations={stations} />
-        <DataTable
-          columns={columns}
-          data={lines}
-          stations={stations}
-          setStations={setStations}
-        />
+        <h2 className="text-3xl font-bold tracking-tight">
+          {user.displayName?.split(" ")[0]}&#39;s Dashboard
+        </h2>
+
+        <div className="space-y-2 mt-8">
+          <Stats stations={stations} />
+          <DataTable
+            columns={columns}
+            data={lines}
+            stations={stations}
+            setStations={setStations}
+          />
+        </div>
       </div>
     </>
   );
