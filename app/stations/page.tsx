@@ -15,11 +15,12 @@ interface Props {
 export default function Stations({ user }: Props) {
   const [stations, setStations] = useState<Station[]>([]);
   const [lines, setLines] = useState<Line[]>([]);
+  const userId = (user && user.uid) || 34446;
 
   useEffect(() => {
     const fetchStations = async () => {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/api/user-data?id=${user.uid}`
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/user-data?id=${userId}`
       );
       const jsonBody: { stations: Station[] } = await response.json();
       const alphabeticalStations = jsonBody.stations.sort((a, b) =>
@@ -57,7 +58,7 @@ export default function Stations({ user }: Props) {
 
       <div className="container mx-auto py-10">
         <h2 className="text-3xl font-bold tracking-tight">
-          {user.displayName?.split(" ")[0]}&#39;s Dashboard
+          {user && <>{user.displayName?.split(" ")[0]}&#39;s</>} Dashboard
         </h2>
 
         <div className="space-y-2 mt-8">
