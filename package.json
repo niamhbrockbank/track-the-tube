@@ -37,6 +37,7 @@
   "devDependencies": {
     "@types/pg": "^8.10.3",
     "autoprefixer": "latest",
+    "encoding": "^0.1.13",
     "eslint": "latest",
     "eslint-config-next": "^13.5.4",
     "postcss": "latest",
