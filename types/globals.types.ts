@@ -5,10 +5,16 @@ type BasicStation = {
   notes?: string;
 };
 
-type InactiveStatus = "none";
-type ActiveStatus = "visited" | "passed through" | "changed";
+export const statusOptions = [
+  "visited",
+  "passed through",
+  "changed",
+  "none",
+] as const;
+export type Status = (typeof statusOptions)[number];
 
-export type Status = InactiveStatus | ActiveStatus;
+type InactiveStatus = Extract<Status, "none">;
+type ActiveStatus = Exclude<Status, "none">;
 
 type StationInteraction =
   | {
