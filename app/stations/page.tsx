@@ -18,10 +18,9 @@ interface Props {
 export default function Stations({ user }: Props) {
   const [stations, setStations] = useState<Station[]>([]);
   const [lines, setLines] = useState<Line[]>([]);
-  const userId = (user && user.uid) || 34446;
 
   useEffect(() => {
-    const token = user.getIdToken();
+    const token = (user && user.getIdToken()) || "";
 
     const fetchStations = async () => {
       const response = await fetch(
