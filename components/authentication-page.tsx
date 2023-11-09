@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Image from "next/image";
 import { buttonVariants } from "./ui/button";
 import { Auth } from "firebase/auth";
 import { cn } from "@/lib/utils";
@@ -22,7 +22,7 @@ export default function AuthenticationPage({ auth }: Props): JSX.Element {
           Login
         </Link> */}
         <div className="relative hidden h-full flex-col bg-muted p-10 text-white dark:border-r lg:flex">
-          <div className="absolute inset-0 bg-zinc-900" />
+          <div className="absolute inset-0 bg-[url('/tube-unsplash.jpg')] bg-cover" />
           <div className="relative z-20 flex items-center text-lg font-medium">
             <TrainFront className="mr-2" />
             Track the Tube
