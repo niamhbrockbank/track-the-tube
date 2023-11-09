@@ -1,5 +1,3 @@
-"use client";
-
 import { columns } from "./columns";
 import { BasicLine, Line, Station } from "@/types/globals.types";
 import { DataTable } from "./data-table";
