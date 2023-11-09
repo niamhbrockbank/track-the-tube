@@ -6,7 +6,11 @@ import { DataTable } from "./data-table";
 import { useEffect, useState } from "react";
 import Stats from "@/components/stats";
 import NavBar from "@/components/nav-bar";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { User } from "firebase/auth";
+import { AlertTriangle, FileWarningIcon } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 interface Props {
   user: User;
@@ -54,6 +58,16 @@ export default function Stations({ user }: Props) {
 
   return (
     <>
+      {!user && (
+        <Alert className="bg-yellow-100 rounded-none flex items-center justify-between">
+          <AlertDescription>
+            Sign up or login to save your changes.
+          </AlertDescription>
+          <Button>
+            <Link href="/">Log in</Link>
+          </Button>
+        </Alert>
+      )}
       <NavBar />
 
       <div className="container mx-auto py-10">
