@@ -1,5 +1,11 @@
 import { Button } from "@/components/ui/button";
+import { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Track the tube Login",
+  description: "Log in to Track the Tube.",
+};
 
 export default function Home() {
   return (
