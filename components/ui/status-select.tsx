@@ -7,9 +7,7 @@ import {
 } from "@/components/ui/select";
 import { Badge } from "./badge";
 import axios from "axios";
-import { Station } from "@/types/globals.types";
-
-export type Status = "visited" | "passed through" | "changed" | "none";
+import { Station, Status, statusOptions } from "@/types/globals.types";
 interface IProps {
   station: Station;
   stations: Station[];
@@ -22,8 +20,6 @@ export default function StatusSelect({
   setStations,
 }: IProps) {
   const { stationId, status } = station;
-
-  const statusOptions = ["visited", "passed through", "changed", "none"];
 
   function updateStatus(value: Status) {
     const updatedStation = { ...station, status: value };
