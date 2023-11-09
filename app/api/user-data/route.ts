@@ -12,6 +12,23 @@ export async function GET(req: NextRequest) {
     user_id = getUserId(token);
   }
 
+  // Check user id exists in users
+  try {
+    const { rows } = await db.query(`SELECT * FROM users WHERE user_id = $1`, [
+      user_id,
+    ]);
+    if (rows.length < 1) {
+      // If it doesn't send request to POST /user-data with the user_id
+      console.log("post new user");
+    }
+  } catch (error) {
+    console.error("Error executing query:", error);
+    return NextResponse.json(
+      { error: "Internal Server Error" },
+      { status: 500 }
+    );
+  }
+
   try {
     const { rows } = await db.query(
       `SELECT * FROM user_data
