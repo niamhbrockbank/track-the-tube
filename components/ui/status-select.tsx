@@ -7,9 +7,7 @@ import {
 } from "@/components/ui/select";
 import { Badge } from "./badge";
 import axios from "axios";
-import { Station } from "@/types/globals.types";
-
-export type Status = "visited" | "passed through" | "changed" | "none";
+import { Station, Status } from "@/types/globals.types";
 interface IProps {
   station: Station;
   stations: Station[];
