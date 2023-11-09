@@ -6,9 +6,8 @@ import { DataTable } from "./data-table";
 import { useEffect, useState } from "react";
 import Stats from "@/components/stats";
 import NavBar from "@/components/nav-bar";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 import { User } from "firebase/auth";
-import { AlertTriangle, FileWarningIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
@@ -22,9 +21,11 @@ export default function Stations({ user }: Props) {
   const userId = (user && user.uid) || 34446;
 
   useEffect(() => {
+    const token = user.getIdToken();
+
     const fetchStations = async () => {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/api/user-data?id=${userId}`
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/user-data?token=${token}`
       );
       const jsonBody: { stations: Station[] } = await response.json();
       const alphabeticalStations = jsonBody.stations.sort((a, b) =>

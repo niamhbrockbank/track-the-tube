@@ -1,9 +1,16 @@
+import getUserId from "@/lib/api/getUserId";
 import { db } from "@/lib/db/db";
+
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
-  const user_id = searchParams.get("id");
+  const token = searchParams.get("token");
+
+  let user_id = "";
+  if (token) {
+    user_id = getUserId(token);
+  }
 
   try {
     const { rows } = await db.query(
