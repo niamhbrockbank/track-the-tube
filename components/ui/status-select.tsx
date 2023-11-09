@@ -7,10 +7,8 @@ import {
 } from "@/components/ui/select";
 import { Badge } from "./badge";
 import axios from "axios";
-import { Station } from "@/types/globals.types";
-
-export type Status = "visited" | "passed through" | "changed" | "none";
-interface Props {
+import { Station, Status } from "@/types/globals.types";
+interface IProps {
   station: Station;
   stations: Station[];
   setStations: React.Dispatch<React.SetStateAction<Station[]>>;

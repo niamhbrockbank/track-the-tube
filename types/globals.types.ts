@@ -5,12 +5,17 @@ type BasicStation = {
   notes?: string;
 };
 
+type InactiveStatus = "none";
+type ActiveStatus = "visited" | "passed through" | "changed";
+
+export type Status = InactiveStatus | ActiveStatus;
+
 type StationInteraction =
   | {
-      status: "none";
+      status: InactiveStatus;
     }
   | {
-      status: "visited" | "passed through" | "changed";
+      status: ActiveStatus;
       rating: 1 | 2 | 3 | 4 | 5;
       dateOfFirstVisit: Date;
       purposeOfVisit: string;
