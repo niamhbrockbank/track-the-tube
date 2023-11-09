@@ -1,5 +1,6 @@
 import getUserId from "@/lib/api/getUserId";
 import { db } from "@/lib/db/db";
+import axios from "axios";
 
 import { NextRequest, NextResponse } from "next/server";
 
@@ -19,7 +20,15 @@ export async function GET(req: NextRequest) {
     ]);
     if (rows.length < 1) {
       // If it doesn't send request to POST /user-data with the user_id
-      console.log("post new user");
+      axios.post(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/user-data`,
+        { user_id, user_name: "new user" },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
     }
   } catch (error) {
     console.error("Error executing query:", error);
