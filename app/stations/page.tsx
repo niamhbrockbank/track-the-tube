@@ -6,6 +6,12 @@ import { DataTable } from "./data-table";
 import { useEffect, useState } from "react";
 import Stats from "@/components/stats";
 import NavBar from "@/components/nav-bar";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Stations",
+  description: "Track your progress across tube stations.",
+};
 
 export default function Stations() {
   const [stations, setStations] = useState<Station[]>([]);
