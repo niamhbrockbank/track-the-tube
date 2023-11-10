@@ -34,7 +34,7 @@ export default function Stations({ user }: Props) {
     };
 
     fetchStations();
-  }, [user]);
+  }, []);
 
   useEffect(() => {
     const fetchLines = async () => {
