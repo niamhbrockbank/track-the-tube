@@ -1,9 +1,39 @@
+// import getUserId from "@/lib/api/getUserId";
 import { db } from "@/lib/db/db";
+import axios from "axios";
+
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
-  const user_id = searchParams.get("id");
+  const token = searchParams.get("token");
+
+  const user_id = token;
+
+  // Check user id exists in users
+  try {
+    const { rows } = await db.query(`SELECT * FROM users WHERE user_id = $1`, [
+      user_id,
+    ]);
+    if (rows.length < 1) {
+      // If it doesn't send request to POST /user-data with the user_id
+      axios.post(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/user-data`,
+        { user_id, user_name: "new user" },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+    }
+  } catch (error) {
+    console.error("Error executing query:", error);
+    return NextResponse.json(
+      { error: "Internal Server Error" },
+      { status: 500 }
+    );
+  }
 
   try {
     const { rows } = await db.query(

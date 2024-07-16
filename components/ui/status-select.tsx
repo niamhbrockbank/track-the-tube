@@ -8,7 +8,7 @@ import {
 import { Badge } from "./badge";
 import axios from "axios";
 import { Station, Status, statusOptions } from "@/types/globals.types";
-interface IProps {
+interface Props {
   station: Station;
   stations: Station[];
   setStations: React.Dispatch<React.SetStateAction<Station[]>>;
@@ -18,7 +18,7 @@ export default function StatusSelect({
   station,
   stations,
   setStations,
-}: IProps) {
+}: Props) {
   const { stationId, status } = station;
 
   function updateStatus(value: Status) {

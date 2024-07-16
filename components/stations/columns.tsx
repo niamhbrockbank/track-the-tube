@@ -1,5 +1,3 @@
-"use client";
-
 import { ColumnDef } from "@tanstack/react-table";
 import { Line } from "@/types/globals.types";
 import { CollapsibleTrigger } from "@/components/ui/collapsible";
