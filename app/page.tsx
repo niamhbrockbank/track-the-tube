@@ -5,7 +5,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import AuthenticationPage from "@/components/authentication-page";
-import Stations from "./stations/page";
+import Stations from "@/components/stations/stations-page";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {

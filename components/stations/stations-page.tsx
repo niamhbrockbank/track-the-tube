@@ -1,8 +1,7 @@
 "use client";
 
-import { columns } from "./columns";
 import { BasicLine, Line, Station } from "@/types/globals.types";
-import { DataTable } from "./data-table";
+
 import { useEffect, useState } from "react";
 import Stats from "@/components/stats";
 import NavBar from "@/components/nav-bar";
@@ -10,6 +9,8 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { User } from "firebase/auth";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { DataTable } from "@/components/stations/data-table";
+import { columns } from "@/components/stations/columns";
 
 interface Props {
   user: User;
