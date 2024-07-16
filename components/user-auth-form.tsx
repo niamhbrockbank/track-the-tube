@@ -33,7 +33,7 @@ export default function UserAuthForm({ auth }: Props) {
       </div>
       {/* <Button onClick={handleSignInWithGoogle}>Sign in with Google</Button> */}
       <Link
-        href="/stations"
+        href="/"
         className="px-8 text-center text-sm text-muted-foreground underline underline-offset-4 hover:text-primary"
       >
         Continue as Guest
