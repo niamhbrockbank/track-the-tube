@@ -6,7 +6,6 @@ import { getAuth } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import AuthenticationPage from "@/components/authentication-page";
 import Stations from "@/components/stations/stations-page";
-import { Metadata } from "next";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -22,11 +21,6 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-
-export const metadata: Metadata = {
-  title: "Track the tube Login",
-  description: "Log in to Track the Tube.",
-};
 
 export default function Home() {
   const [user] = useAuthState(auth);
