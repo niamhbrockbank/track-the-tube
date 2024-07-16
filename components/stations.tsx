@@ -1,5 +1,7 @@
-"use client";
+import Stations from "@/components/stations";
+import { Metadata } from "next";
 
+<<<<<<<< HEAD:components/stations.tsx
 import { BasicLine, Line, Station } from "@/types/globals.types";
 import { useEffect, useState } from "react";
 import Stats from "@/components/stats";
@@ -59,4 +61,13 @@ export default function Stations() {
       </div>
     </>
   );
+========
+export const metadata: Metadata = {
+  title: "Dashboard",
+  description: "Track your progress across tube stations.",
+};
+
+export default function Dashboard() {
+  return <Stations />;
+>>>>>>>> origin/main:app/stations/page.tsx
 }
