@@ -56,7 +56,7 @@ export default function Stations({ user }: Props) {
 
   return (
     <>
-      {!user && (
+      {user.isAnonymous && (
         <Alert className="bg-yellow-100 rounded-none flex items-center justify-between">
           <AlertDescription>
             Sign up or login to save your changes.
@@ -69,7 +69,7 @@ export default function Stations({ user }: Props) {
       <NavBar />
       <div className="container mx-auto py-10">
         <h2 className="text-3xl font-bold tracking-tight">
-          {user && <>{user.displayName?.split(" ")[0]}&#39;s</>} Dashboard
+          {!user.isAnonymous && <>{user.displayName?.split(" ")[0]}&#39;s</>} Dashboard
         </h2>
 
         <div className="space-y-2 mt-8">
