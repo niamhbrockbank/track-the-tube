@@ -61,9 +61,9 @@ export default function Stations({ user }: Props) {
           <AlertDescription>
             Sign up or login to save your changes.
           </AlertDescription>
-          <Button className="bg-yellow-400 text-black hover:bg-yellow-500">
+          {/* <Button className="bg-yellow-400 text-black hover:bg-yellow-500">
             <Link href="/">Log in</Link>
-          </Button>
+          </Button> */}
         </Alert>
       )}
       <NavBar />
