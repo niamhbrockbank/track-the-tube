@@ -1,4 +1,4 @@
-import { Auth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { Auth, GoogleAuthProvider, signInAnonymously, signInWithPopup } from "firebase/auth";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import Link from "next/link";
@@ -17,6 +17,16 @@ export default function UserAuthForm({ auth }: Props) {
       console.error(error);
     }
   };
+
+  const handleSignInAnonymously = async () => {
+    try {
+      const response = await signInAnonymously(auth);
+      console.log(response)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   return (
     <>
       <Input placeholder="name@example.com" />
@@ -32,12 +42,13 @@ export default function UserAuthForm({ auth }: Props) {
         </div>
       </div>
       {/* <Button onClick={handleSignInWithGoogle}>Sign in with Google</Button> */}
-      <Link
-        href="/"
-        className="px-8 text-center text-sm text-muted-foreground underline underline-offset-4 hover:text-primary"
+      <Button
+        onClick={handleSignInAnonymously}
+        variant="link"
+        className=" text-muted-foreground underline underline-offset-4 hover:text-primary"
       >
         Continue as Guest
-      </Link>
+      </Button>
     </>
   );
 }
