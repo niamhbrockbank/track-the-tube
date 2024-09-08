@@ -22,3 +22,9 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 Go to [http://localhost:3000/stations](http://localhost:3000/stations) for station table.
+
+### Running the Linter
+To run the lint with full [`airbnb-eslint-typescript`](https://www.npmjs.com/package/eslint-config-airbnb-typescript) rules use the following command:
+```
+npm run lint
+```
