@@ -1,7 +1,4 @@
-import Image from "next/image";
-import { buttonVariants } from "./ui/button";
 import { Auth } from "firebase/auth";
-import { cn } from "@/lib/utils";
 import { TrainFront } from "lucide-react";
 import UserAuthForm from "./user-auth-form";
 

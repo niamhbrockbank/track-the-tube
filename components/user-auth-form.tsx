@@ -1,31 +1,30 @@
-import { Auth, GoogleAuthProvider, signInAnonymously, signInWithPopup } from "firebase/auth";
+import { Auth, signInAnonymously } from "firebase/auth";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
-import Link from "next/link";
 
 interface Props {
   auth: Auth;
 }
 
 export default function UserAuthForm({ auth }: Props) {
-  const provider = new GoogleAuthProvider();
-  const handleSignInWithGoogle = async () => {
+  // const provider = new GoogleAuthProvider();
+  // const handleSignInWithGoogle = async () => {
+  //   try {
+  //     const response = await signInWithPopup(auth, provider);
+  //     console.log(response);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
+
+  const handleSignInAnonymously = async () => {
     try {
-      const response = await signInWithPopup(auth, provider);
+      const response = await signInAnonymously(auth);
       console.log(response);
     } catch (error) {
       console.error(error);
     }
   };
-
-  const handleSignInAnonymously = async () => {
-    try {
-      const response = await signInAnonymously(auth);
-      console.log(response)
-    } catch (error) {
-      console.error(error)
-    }
-  }
 
   return (
     <>

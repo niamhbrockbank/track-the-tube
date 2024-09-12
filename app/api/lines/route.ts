@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { db } from "@/lib/db/db";
 import getLines from "@/lib/api/lines/getLines";
 import mapStations from "@/lib/api/lines/mapStations";
@@ -24,7 +24,7 @@ export async function GET() {
   }
 }
 
-export async function POST(req: NextRequest) {
+export async function POST() {
   try {
     const { rows } = await db.query(
       `INSERT INTO lines VALUES ($1, $2, $3) RETURNING *`,
