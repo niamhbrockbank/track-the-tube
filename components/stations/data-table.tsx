@@ -85,7 +85,6 @@ export function DataTable<TData extends Line, TValue>({
           <TableBody>
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => {
-                // @ts-ignore
                 const rowColor = row.original.line_id;
 
                 return (

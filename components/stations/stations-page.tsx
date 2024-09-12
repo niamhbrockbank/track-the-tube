@@ -19,7 +19,7 @@ export default function Stations({ user }: Props) {
 
   useEffect(() => {
     const fetchStations = async () => {
-      const token = user.isAnonymous ? '34446' : await user.getIdToken()
+      const token = user.isAnonymous ? "34446" : await user.getIdToken();
 
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_BASE_URL}/api/user-data?token=${token}`
@@ -32,7 +32,7 @@ export default function Stations({ user }: Props) {
     };
 
     fetchStations();
-  }, []);
+  }, [user]);
 
   useEffect(() => {
     const fetchLines = async () => {
@@ -68,7 +68,8 @@ export default function Stations({ user }: Props) {
       <NavBar />
       <div className="container mx-auto py-10">
         <h2 className="text-3xl font-bold tracking-tight">
-          {!user.isAnonymous && <>{user.displayName?.split(" ")[0]}&#39;s</>} Dashboard
+          {!user.isAnonymous && <>{user.displayName?.split(" ")[0]}&#39;s</>}{" "}
+          Dashboard
         </h2>
 
         <div className="space-y-2 mt-8">

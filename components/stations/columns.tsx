@@ -34,7 +34,6 @@ export const columns: ColumnDef<Line>[] = [
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger>
-                {/* @ts-ignore */}
                 <Gauge value={status} size="small" showValue={true} />
               </TooltipTrigger>
               <TooltipContent>
