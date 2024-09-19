@@ -7,25 +7,25 @@ export default function NavBar() {
         <div className="flex h-16 items-center px-4">
           <nav className={"flex items-center space-x-4 lg:space-x-6 mx-6"}>
             <Link
-              href="/stations"
+              href="/"
               className="text-sm font-medium transition-colors hover:text-primary"
             >
               Overview
             </Link>
             <Link
-              href="/stations"
+              href="/leaderboard"
               className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
             >
               Leaderboard
             </Link>
             <Link
-              href="/stations"
+              href="/achievements"
               className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
             >
               Achievements
             </Link>
             <Link
-              href="/stations"
+              href="/settings"
               className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
             >
               Settings
