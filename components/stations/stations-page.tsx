@@ -2,6 +2,7 @@
 
 import { BasicLine, Line, Station } from "@/types/globals.types";
 
+import { userToken } from "@/app/globals";
 import NavBar from "@/components/nav-bar";
 import { columns } from "@/components/stations/columns";
 import { DataTable } from "@/components/stations/data-table";
@@ -19,7 +20,7 @@ export default function Stations({ user }: Props) {
 
   useEffect(() => {
     const fetchStations = async () => {
-      const token = user.isAnonymous ? "34446" : await user.getIdToken();
+      const token = user.isAnonymous ? "34446" : userToken;
 
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_BASE_URL}/api/user-data?token=${token}`
