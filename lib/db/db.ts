@@ -1,7 +1,7 @@
 import { Client } from "pg";
 
 const db = new Client({
-  connectionString: process.env.NEXT_PUBLIC_DB_URL,
+  connectionString: process.env.POSTGRES_URL,
   ssl: process.env.NODE_ENV === "production",
 });
 
@@ -16,4 +16,4 @@ async function connectDatabase() {
 
 connectDatabase();
 
-export { db, connectDatabase };
+export { connectDatabase, db };
